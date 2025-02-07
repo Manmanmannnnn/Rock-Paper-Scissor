@@ -16,6 +16,7 @@ const App = () => {
   const [computerCards, setComputerCards] = useState([]);
   const [playerChoice, setPlayerChoice] = useState("");
   const [compChoice, setCompChoice] = useState("");
+  const [resetIndicator, setResetIndicator] = useState(0);
 
   useEffect(() => {
     async function playerData() {
@@ -31,11 +32,11 @@ const App = () => {
 
     playerData();
     computerData();
-  }, []);
+  }, [resetIndicator]);
 
   useEffect(() => {
     handleRoundWinner();
-  }, [playerChoice]);
+  }, [playerChoice, compChoice]);
 
   function handlePlayerChoice(choice) {
     handleCompChoice();
@@ -53,14 +54,38 @@ const App = () => {
       (playerChoice === 2 && compChoice === 1) ||
       (playerChoice === 0 && compChoice === 2)
     ) {
-      setPlayerScore((p) => p + 1);
+      return setPlayerScore((p) => p + 1);
     } else if (
       (playerChoice === 0 && compChoice === 1) ||
       (playerChoice === 1 && compChoice === 2) ||
       (playerChoice === 2 && compChoice === 0)
     ) {
-      setCompScore((c) => c + 1);
+      return setCompScore((c) => c + 1);
     }
+  }
+
+  function resetGame() {
+    setResetIndicator((r) => r + 1);
+    setPlayerScore(0);
+    setCompScore(0);
+    setPlayerChoice("");
+    setCompChoice("");
+  }
+
+  function handleGameWinner() {
+    if (playerScore === 3 || compScore === 3) {
+      return (
+        <div className="fixed left-1/2 right-1/2 h-32 w-60 cursor-pointer bg-green-300">
+          <p>
+            {playerScore === 3
+              ? "Player Won the Game!"
+              : "Computer Won the Game!"}
+          </p>
+          <button onClick={() => resetGame()}>Play Again</button>
+        </div>
+      );
+    }
+    return;
   }
 
   return (
@@ -77,9 +102,12 @@ const App = () => {
       </section>
       <section>
         <Playground
+          handleGameWinner={handleGameWinner}
           playerCards={playerCards}
           computerCards={computerCards}
           handlePlayerChoice={handlePlayerChoice}
+          playerChoice={playerChoice}
+          compChoice={compChoice}
         />
       </section>
       <section>
