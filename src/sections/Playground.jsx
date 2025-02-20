@@ -7,6 +7,7 @@ const Playground = ({
   playerChoice,
   compChoice,
   handleGameWinner,
+  winnerAnnounce,
 }) => {
   function renderChoice(player, playerChoice) {
     const chosenCard = player[playerChoice];
@@ -36,6 +37,7 @@ const Playground = ({
         <p className="pt-10 font-mono text-5xl">VS</p>
         <div className="w-2/5">{renderChoice(computerCards, compChoice)}</div>
       </div>
+      <p>{winnerAnnounce}</p>
 
       <div className="flex min-h-[20vh] w-full justify-center gap-40">
         <div className="flex gap-4">
@@ -46,7 +48,7 @@ const Playground = ({
                 index={index}
                 name={el.name}
                 image={el.sprites.front_default}
-                type={el.types[0].type.name}
+                type={el.types}
                 key={el.id}
               />
             );
@@ -59,7 +61,7 @@ const Playground = ({
                 name={el.name}
                 key={el.id}
                 image={el.sprites.front_default}
-                type={el.types[0].type.name}
+                type={el.types}
               />
             );
           })}

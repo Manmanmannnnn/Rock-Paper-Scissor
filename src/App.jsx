@@ -17,6 +17,7 @@ const App = () => {
   const [playerChoice, setPlayerChoice] = useState("");
   const [compChoice, setCompChoice] = useState("");
   const [resetIndicator, setResetIndicator] = useState(0);
+  const [winnerAnnounce, setWinnerAnnounce] = useState("");
 
   useEffect(() => {
     async function playerData() {
@@ -54,13 +55,20 @@ const App = () => {
       (playerChoice === 2 && compChoice === 1) ||
       (playerChoice === 0 && compChoice === 2)
     ) {
-      return setPlayerScore((p) => p + 1);
+      setPlayerScore((p) => p + 1);
+      setWinnerAnnounce("You won the round");
+      setTimeout(() => setWinnerAnnounce(""), 2000);
     } else if (
       (playerChoice === 0 && compChoice === 1) ||
       (playerChoice === 1 && compChoice === 2) ||
       (playerChoice === 2 && compChoice === 0)
     ) {
-      return setCompScore((c) => c + 1);
+      setWinnerAnnounce("Computer won the round");
+      setTimeout(() => setWinnerAnnounce(""), 2000);
+      setCompScore((c) => c + 1);
+    } else {
+      setWinnerAnnounce("Its a tie!");
+      setTimeout(() => setWinnerAnnounce(""), 2000);
     }
   }
 
@@ -108,6 +116,7 @@ const App = () => {
           handlePlayerChoice={handlePlayerChoice}
           playerChoice={playerChoice}
           compChoice={compChoice}
+          winnerAnnounce={winnerAnnounce}
         />
       </section>
       <section>
