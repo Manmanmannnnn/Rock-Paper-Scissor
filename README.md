@@ -1,8 +1,19 @@
-# React + Vite
+# Pokémon Rock Paper Scissors 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Pokémon Rock Paper Scissors** app! This is a fun twist on the classic game, featuring Pokémon types instead of traditional rock, paper, and scissors. The game is played between three types of Pokémon: **Water 🌊**, **Fire 🔥**, and **Grass 🌱**.
 
-Currently, two official plugins are available:
+## Objective 🏆
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The game is a **race to 3** wins. The first player to reach 3 victories wins the game.
+
+## Rules 📜
+
+- **Water 🌊 beats Fire 🔥**
+- **Fire 🔥 beats Grass 🌱**
+- **Grass 🌱 beats Water 🌊**
+
+## Gameplay 🕹️
+
+1. **Choose your Pokémon**: Each round, you’ll choose between **Water 🌊**, **Fire 🔥**, or **Grass 🌱**.
+2. **Play the Round**: Once you've selected your Pokémon, the computer will randomly choose one as well.
+3. **Race to 3**: The first to win 3 rounds is declared the overall winner.

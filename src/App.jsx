@@ -1,9 +1,4 @@
-import {
-  Playground,
-  InfoSection,
-  ButtonSection,
-  Instruction,
-} from "./sections/sections";
+import { Playground, InfoSection, Instruction } from "./sections/sections";
 
 import { useEffect, useState } from "react";
 import { getData } from "./components/datafetch";
@@ -66,9 +61,15 @@ const App = () => {
       setWinnerAnnounce("Computer won the round");
       setTimeout(() => setWinnerAnnounce(""), 2000);
       setCompScore((c) => c + 1);
-    } else {
+    } else if (
+      (playerChoice === 0 && compChoice === 0) ||
+      (playerChoice === 1 && compChoice === 1) ||
+      (playerChoice === 2 && compChoice === 2)
+    ) {
       setWinnerAnnounce("Its a tie!");
       setTimeout(() => setWinnerAnnounce(""), 2000);
+    } else {
+      setWinnerAnnounce("");
     }
   }
 
@@ -78,18 +79,24 @@ const App = () => {
     setCompScore(0);
     setPlayerChoice("");
     setCompChoice("");
+    setWinnerAnnounce("");
   }
 
   function handleGameWinner() {
     if (playerScore === 3 || compScore === 3) {
       return (
-        <div className="fixed left-1/2 right-1/2 h-32 w-60 cursor-pointer bg-green-300">
-          <p>
+        <div className="flex flex-col items-center p-3">
+          <p className="text-4xl font-bold">
             {playerScore === 3
-              ? "Player Won the Game!"
-              : "Computer Won the Game!"}
+              ? "🎊 Player Won the Game! 🎊"
+              : "🎊 Computer Won the Game! 🎊"}
           </p>
-          <button onClick={() => resetGame()}>Play Again</button>
+          <button
+            className="rounded-2xl p-2 text-lg font-medium duration-700 hover:bg-slate-700 hover:text-gray-300"
+            onClick={() => resetGame()}
+          >
+            Play Again
+          </button>
         </div>
       );
     }
@@ -97,14 +104,12 @@ const App = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative h-screen overflow-hidden">
       <Header />
       <section>
         <Instruction />
       </section>
-      <div>
-        {playerChoice} -{compChoice}
-      </div>
+
       <section className="mt-11">
         <InfoSection playerScore={playerScore} compScore={compScore} />
       </section>
@@ -118,9 +123,6 @@ const App = () => {
           compChoice={compChoice}
           winnerAnnounce={winnerAnnounce}
         />
-      </section>
-      <section>
-        <ButtonSection />
       </section>
     </div>
   );
