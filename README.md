@@ -2,6 +2,10 @@
 
 Welcome to the **Pokémon Rock Paper Scissors** app! This is a fun twist on the classic game, featuring Pokémon types instead of traditional rock, paper, and scissors. The game is played between three types of Pokémon: **Water 🌊**, **Fire 🔥**, and **Grass 🌱**.
 
+## Demo 👀
+
+[Pokémon-Rock-Paper-Scissors](https://super-blini-8bfade.netlify.app/)
+
 ## Objective 🏆
 
 The game is a **race to 3** wins. The first player to reach 3 victories wins the game.
